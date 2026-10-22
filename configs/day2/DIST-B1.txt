@@ -1,0 +1,315 @@
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname DIST-B1
+!
+!
+no profinet
+enable secret 5 <removed>
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+username admin secret 5 <removed>
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name corp.local
+!
+!
+vtp mode transparent
+!
+spanning-tree mode rapid-pvst
+spanning-tree vlan 210,230,250 priority 24576
+spanning-tree vlan 220,240,299 priority 28672
+!
+!
+!
+!
+!
+!
+vlan 210
+ name ENG
+!
+vlan 220
+ name DEV
+!
+vlan 230
+ name WIFI-CORP
+!
+vlan 240
+ name WIFI-GUEST
+!
+vlan 250
+ name AP-MGMT
+!
+vlan 299
+ name MGMT-B
+!
+vlan 666
+ name BLACKHOLE
+!
+vlan 999
+ name NATIVE
+!
+interface Loopback0
+ ip address 10.255.0.23 255.255.255.255
+!
+interface Port-channel2
+ switchport trunk native vlan 999
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 210,220,230,240,250,299,999
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 210,220,230,240,250,299,999
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/3
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 210,220,230,240,250,299,999
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/4
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/5
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/6
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/7
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/8
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/9
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/10
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/11
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/12
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/13
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/14
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/15
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/16
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/17
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/18
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/19
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/20
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/21
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/22
+ switchport access vlan 666
+ switchport mode access
+ shutdown
+!
+interface FastEthernet0/23
+ switchport trunk native vlan 999
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 2 mode active
+!
+interface FastEthernet0/24
+ switchport trunk native vlan 999
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 2 mode active
+!
+interface GigabitEthernet0/1
+ no switchport
+ ip address 10.0.0.30 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no switchport
+ ip address 10.0.0.54 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan210
+ mac-address 0060.70e4.0401
+ ip address 10.2.10.2 255.255.255.0
+ ip helper-address 10.3.10.10
+ standby version 2
+ standby 210 ip 10.2.10.1
+ standby 210 priority 110
+ standby 210 preempt
+!
+interface Vlan220
+ mac-address 0060.70e4.0402
+ ip address 10.2.20.2 255.255.255.0
+ ip helper-address 10.3.10.10
+ standby version 2
+ standby 220 ip 10.2.20.1
+ standby 220 preempt
+!
+interface Vlan230
+ mac-address 0060.70e4.0403
+ ip address 10.2.30.2 255.255.255.0
+ ip helper-address 10.3.10.10
+ standby version 2
+ standby 230 ip 10.2.30.1
+ standby 230 priority 110
+ standby 230 preempt
+!
+interface Vlan240
+ mac-address 0060.70e4.0404
+ ip address 10.2.40.2 255.255.255.0
+ ip helper-address 10.3.10.10
+ standby version 2
+ standby 240 ip 10.2.40.1
+ standby 240 preempt
+!
+interface Vlan250
+ mac-address 0060.70e4.0405
+ ip address 10.2.50.2 255.255.255.0
+ ip helper-address 10.3.10.10
+ standby version 2
+ standby 250 ip 10.2.50.1
+ standby 250 priority 110
+ standby 250 preempt
+!
+interface Vlan299
+ mac-address 0060.70e4.0406
+ ip address 10.2.99.2 255.255.255.0
+ standby version 2
+ standby 299 ip 10.2.99.1
+ standby 299 preempt
+!
+router ospf 1
+ router-id 10.255.0.23
+ log-adjacency-changes
+ area 20 range 10.2.0.0 255.255.0.0
+ passive-interface Vlan210
+ passive-interface Vlan220
+ passive-interface Vlan230
+ passive-interface Vlan240
+ passive-interface Vlan250
+ network 10.2.0.0 0.0.255.255 area 20
+ network 10.255.0.23 0.0.0.0 area 0
+ network 10.0.0.28 0.0.0.3 area 0
+ network 10.0.0.52 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd #Authorized access only#
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+!
+end
+
