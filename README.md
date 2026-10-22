@@ -30,7 +30,7 @@
 | 일차 | 주제 | 상태 | 기록 |
 |---|---|---|---|
 | Day 1 | 기본 설정, VLAN, 트렁크, EtherChannel, STP, 액세스 포트 | ✅ 완료 | [day1-L2.md](docs/day1-L2.md) |
-| Day 2 | Routed 링크, L3 EtherChannel, SVI, HSRP, OSPF, DHCP | ⏳ | |
+| Day 2 | Routed 링크, L3 EtherChannel, SVI, HSRP, OSPF, DHCP | ⏳ | | ✅ 완료 | [day1-L2.md](docs/day2-L3.md) |
 | Day 3 | BGP 멀티호밍, NAT | ⏳ | |
 | Day 4 | 지사 연결 (GRE/IPsec, EIGRP 재분배) | ⏳ | |
 | Day 5 | ASA DMZ, ACL | ⏳ | |
