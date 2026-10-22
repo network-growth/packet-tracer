@@ -1,0 +1,100 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname ISP-A
+!
+!
+!
+enable secret 5 $1$mERr$CUry7HXXgrUaKu8pJTm9z1
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username admin secret 5 $1$mERr$Pq3/lr0agnISq0fxb9TUZ0
+!
+!
+license udi pid CISCO2911/K9 sn FTX15245LY8-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name corp.local
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 100.0.1.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 150.0.0.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ ip address 100.0.2.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router bgp 100
+ bgp log-neighbor-changes
+ no synchronization
+ neighbor 100.0.1.2 remote-as 65001
+ neighbor 150.0.0.2 remote-as 200
+ network 100.0.2.0 mask 255.255.255.252
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd #Authorized access only#
+!
+!
+!
+!
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+end
+
