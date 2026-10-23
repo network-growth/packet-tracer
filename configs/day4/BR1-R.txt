@@ -1,0 +1,147 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname BR1-R
+!
+!
+!
+enable secret 5 $1$mERr$CUry7HXXgrUaKu8pJTm9z1
+!
+!
+ip dhcp excluded-address 10.11.10.1 10.11.10.10
+!
+ip dhcp pool BR1-USERS
+ network 10.11.10.0 255.255.255.0
+ default-router 10.11.10.1
+ dns-server 10.3.10.11
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username admin secret 5 $1$mERr$Pq3/lr0agnISq0fxb9TUZ0
+!
+!
+crypto isakmp policy 10
+ encr aes 256
+ authentication pre-share
+ group 5
+!
+crypto isakmp key Lap-Vpn-Key address 100.0.1.2
+!
+!
+!
+crypto ipsec transform-set TS esp-aes 256 esp-sha-hmac
+!
+crypto map VPN 10 ipsec-isakmp 
+ set peer 100.0.1.2
+ set transform-set TS 
+ match address 110
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name corp.local
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.255.0.41 255.255.255.255
+!
+interface Tunnel0
+ ip address 172.16.1.2 255.255.255.252
+ mtu 1476
+ tunnel source GigabitEthernet0/0/0
+ tunnel destination 100.0.1.2
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 100.0.2.2 255.255.255.252
+ ip nat outside
+ duplex auto
+ speed auto
+ crypto map VPN
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1.10
+ encapsulation dot1Q 10
+ ip address 10.11.10.1 255.255.255.0
+ ip nat inside
+!
+interface GigabitEthernet0/0/1.99
+ encapsulation dot1Q 99
+ ip address 10.11.99.1 255.255.255.0
+ ip nat inside
+!
+interface GigabitEthernet0/0/1.999
+ encapsulation dot1Q 999 native
+ no ip address
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 10.255.0.41
+ log-adjacency-changes
+ area 11 range 10.11.0.0 255.255.0.0
+ passive-interface GigabitEthernet0/0/1.10
+ network 10.255.0.41 0.0.0.0 area 0
+ network 172.16.1.0 0.0.0.3 area 0
+ network 10.11.0.0 0.0.255.255 area 11
+!
+ip nat inside source list 1 interface GigabitEthernet0/0/0 overload
+ip classless
+ip route 0.0.0.0 0.0.0.0 100.0.2.1 
+!
+ip flow-export version 9
+!
+!
+access-list 110 permit gre host 100.0.2.2 host 100.0.1.2
+access-list 1 permit 10.11.0.0 0.0.255.255
+!
+banner motd #Authorized access only#
+!
+!
+!
+!
+line con 0
+ exec-timeout 15 0
+ logging synchronous
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+end
+
