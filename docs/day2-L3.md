@@ -44,12 +44,31 @@
 - 정리: 포트 IP를 쓸 땐 `0.0.0.0`, 네트워크 주소를 쓸 땐 범위 와일드카드(`0.0.0.3`, `0.0.0.255`)
 
 ## 검증 결과
-- `show etherchannel summary` (HQ-CORE1) → (Po1(RU) 확인 / 캡처)
-- `show standby brief` (DIST-A1) → 110·130 Active, 120·199 Standby
-- `show ip ospf neighbor` (HQ-CORE1) → (FULL 개수)
-- `show ip route ospf` (HQ-CORE1) → (O IA 요약 경로 3개 확인)
+- `show etherchannel summary` (HQ-CORE1)
+  
+  <img width="869" height="693" alt="image" src="https://github.com/user-attachments/assets/64835576-78b5-4643-a2e7-7c92307b7dc5" />
+
+- `show standby brief` (DIST-A1)
+
+  <img width="873" height="693" alt="image" src="https://github.com/user-attachments/assets/32d4941d-5a4b-40f2-89d4-3b3d3654dd75" />
+
+- `show ip ospf neighbor` (HQ-CORE1)
+  
+  <img width="871" height="693" alt="image" src="https://github.com/user-attachments/assets/be4db436-aa53-42b5-870e-171f2a985964" />
+
+- `show ip route ospf` (HQ-CORE1)
+  
+  <img width="871" height="693" alt="image" src="https://github.com/user-attachments/assets/06d46d4b-4e2d-463d-9a89-6f6120687254" />
+
 - PC-HR1 `ipconfig` → (받은 IP)
-- PC-HR1 → PC-ENG1 / SRV-DHCP ping → (결과)
+  
+  <img width="866" height="695" alt="image" src="https://github.com/user-attachments/assets/a02ba584-50be-448d-b7e5-14fd41a52013" />
+
+- PC-HR1 → PC-ENG1 / SRV-DHCP ping
+  
+  <img width="798" height="203" alt="image" src="https://github.com/user-attachments/assets/1d4e1167-20b1-4d79-b7a6-7af52c2f70ba" />
+
+  <img width="795" height="196" alt="image" src="https://github.com/user-attachments/assets/1f9184c4-37ed-4e54-9e9a-fe364aa864fd" />
 
 ## 남은 이슈 / 다음에 할 것
 - HQ-CORE1 Gi1/0/11 down — 반대편 ASA 미설정 (Day 5)
