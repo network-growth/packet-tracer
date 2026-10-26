@@ -1,0 +1,93 @@
+ASA Version 9.6(1)
+!
+hostname HQ-FW
+names
+!
+interface GigabitEthernet1/1
+ nameif inside
+ security-level 100
+ ip address 10.0.0.70 255.255.255.252
+!
+interface GigabitEthernet1/2
+ nameif dmz
+ security-level 50
+ ip address 203.0.113.193 255.255.255.224
+!
+interface GigabitEthernet1/3
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/4
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/5
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/6
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/7
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/8
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface Management1/1
+ management-only
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+!
+route inside 0.0.0.0 0.0.0.0 10.0.0.69 1
+!
+access-list INSIDE-IN extended permit tcp any host 203.0.113.200 eq www
+access-list INSIDE-IN extended permit tcp any host 203.0.113.201 eq smtp
+access-list INSIDE-IN extended permit tcp any host 203.0.113.201 eq pop3
+access-list INSIDE-IN extended permit tcp any host 203.0.113.201 eq domain
+access-list INSIDE-IN extended permit icmp 10.0.0.0 255.0.0.0 203.0.113.192 255.255.255.224
+access-list DMZ-IN extended permit icmp any any echo-reply
+!
+!
+access-group INSIDE-IN in interface inside
+access-group DMZ-IN in interface dmz
+!
+!
+class-map inspection_default
+ match default-inspection-traffic
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum 512
+policy-map global_policy
+ class inspection_default
+  inspect dns preset_dns_map
+  inspect ftp 
+  inspect tftp 
+!
+service-policy global_policy global
+!
+telnet timeout 5
+ssh timeout 5
+!
+!
+!
+!
