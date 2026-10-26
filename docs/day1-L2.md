@@ -17,9 +17,16 @@
 - 배운 점:
 
 ## 검증 결과
-- show etherchannel summary → 
-- show spanning-tree vlan 110 → 
-- show vlan brief → 
+- show etherchannel summary
+  <img width="869" height="696" alt="image" src="https://github.com/user-attachments/assets/b6ba1fb9-a3a5-4502-8d8f-a56f85f0736b" />
+
+- show spanning-tree vlan 110
+  <img width="872" height="693" alt="image" src="https://github.com/user-attachments/assets/fda9ba73-d463-4c22-a067-ac95f255c5b0" />
+
+  <img width="864" height="692" alt="image" src="https://github.com/user-attachments/assets/ef6a3ab4-b3d2-4ff4-ac80-e8d45ccb0a50" />
+
+- show vlan brief
+  <img width="866" height="695" alt="image" src="https://github.com/user-attachments/assets/81ff774d-5df4-41ad-b6d6-d67643d68a51" />
 
 ## 남은 이슈 / 다음에 할 것
 - BR2-L3SW Fa0/1 Native VLAN 불일치 (CDP 로그)
