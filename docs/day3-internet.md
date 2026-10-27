@@ -52,7 +52,7 @@
   
 - ISP-A `show ip route bgp`
 
-<img width="874" height="692" alt="스크린샷 2026-10-26 155332" src="https://github.com/user-attachments/assets/7957d94f-6522-4fa1-a277-f77b7b90f197" />
+  <img width="874" height="692" alt="스크린샷 2026-10-26 155332" src="https://github.com/user-attachments/assets/7957d94f-6522-4fa1-a277-f77b7b90f197" />
 
 - HQ-CORE1 `show ip route`
 
