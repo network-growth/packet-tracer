@@ -46,12 +46,29 @@
 - 확인: `show ip route static` → `S 203.0.113.0/24 is directly connected, Null0`
 
 ## 검증 결과
-- `show ip bgp summary` (각 장비) → (이웃 상태 / 받은 경로 수)
-- ISP-A `show ip route bgp` → (8.8.8.0/24, 203.0.113.0/24, 203.0.113.0/26 확인)
-- HQ-CORE1 `show ip route` → (O*E2 0.0.0.0/0 다음홉 2개 확인)
-- PC-HR1 `ping 8.8.8.8` → (결과)
-- HQ-EDGE1/2 `show ip nat translations` → (변환 기록)
-- 장애 테스트: HQ-EDGE1 Gi0/0 shutdown → PC-HR1 `ping 8.8.8.8` → (결과)
+- `show ip bgp summary` (각 장비)
+
+  <img width="848" height="781" alt="image" src="https://github.com/user-attachments/assets/a0dafd8e-74ea-4971-ac0d-a532bcce8484" />
+  
+- ISP-A `show ip route bgp`
+
+<img width="874" height="692" alt="스크린샷 2026-10-26 155332" src="https://github.com/user-attachments/assets/7957d94f-6522-4fa1-a277-f77b7b90f197" />
+
+- HQ-CORE1 `show ip route`
+
+  <img width="865" height="688" alt="스크린샷 2026-10-26 155358" src="https://github.com/user-attachments/assets/c653dd0f-e0fa-43fc-8d5c-3c90ed67719d" />
+  
+- PC-HR1 `ping 8.8.8.8`
+
+  <img width="833" height="297" alt="image" src="https://github.com/user-attachments/assets/389098e8-aa6f-4346-85ff-3d1355a59dc2" />
+
+- HQ-EDGE1/2 `show ip nat translations`
+
+  <img width="915" height="731" alt="image" src="https://github.com/user-attachments/assets/9b96bb04-1bb0-4063-8a79-7f0e4f30c7c6" />
+
+- 장애 테스트: HQ-EDGE1 Gi0/0 shutdown → PC-HR1 `ping 8.8.8.8`
+
+  <img width="911" height="735" alt="image" src="https://github.com/user-attachments/assets/6fbc6f18-b48d-481e-8bf4-d08111f15560" />
 
 ## 남은 이슈 / 다음에 할 것
 - 엣지 간 iBGP 미구성 (PT의 update-source / next-hop-self 지원 여부 확인 필요, 현재 구성에선 없어도 동작)
