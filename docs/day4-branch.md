@@ -40,30 +40,30 @@
 - 의미: 오류가 아니라 `set peer`, `match address` 입력 전이라 비활성 상태라는 안내
 
 ## 검증 결과
-- HQ-EDGE1 `show ip ospf neighbor` → (BR1-R 10.255.0.41 Tunnel0 FULL)
+- HQ-EDGE1 `show ip ospf neighbor`
 
   <img width="761" height="784" alt="image" src="https://github.com/user-attachments/assets/0f2908d5-24df-4485-851f-b3335f0ac39f" />
 
-- HQ-EDGE1 `show crypto isakmp sa` / `show crypto ipsec sa` → (QM_IDLE, encaps/decaps 수)
+- HQ-EDGE1 `show crypto isakmp sa` / `show crypto ipsec sa`
 
   <img width="707" height="240" alt="image" src="https://github.com/user-attachments/assets/42c4da0a-e451-4a5b-87ca-6ad15b59519d" />
 
-- HQ-EDGE2 `show ip eigrp neighbors` → (BR2-R)
+- HQ-EDGE2 `show ip eigrp neighbors`
   
   <img width="1037" height="780" alt="image" src="https://github.com/user-attachments/assets/2038a8e9-d1e5-49f1-ac0d-07f01d9440c5" />
   
-- HQ-CORE1 `show ip route` → (O IA 10.11.0.0/16, O E2 10.12.x.x)
+- HQ-CORE1 `show ip route`
 
   <img width="1037" height="783" alt="image" src="https://github.com/user-attachments/assets/fc46ae6c-e538-491a-8c9d-2aa27867f4a4" />
 
-- BR1-PC1 / BR2-PC1 `ipconfig` → (받은 IP)
+- BR1-PC1 / BR2-PC1 `ipconfig`
   
   <img width="1032" height="772" alt="image" src="https://github.com/user-attachments/assets/df7f8653-c175-4835-8c44-195f5f2fff84" />
 
   <img width="1032" height="781" alt="image" src="https://github.com/user-attachments/assets/47e3dfb5-ff93-41ed-a377-99b46decba02" />
 
 
-- BR1-PC1 → PC-HR1, BR2-PC1 → PC-HR1, BR1-PC1 ↔ BR2-PC1 ping → (결과)
+- BR1-PC1 → PC-HR1, BR2-PC1 → PC-HR1, BR1-PC1 ↔ BR2-PC1 ping
 
   <img width="986" height="307" alt="image" src="https://github.com/user-attachments/assets/af0a18be-3c7d-4757-b946-96987d021a59" />
 
@@ -71,7 +71,7 @@
 
   <img width="687" height="279" alt="image" src="https://github.com/user-attachments/assets/1136669e-5a4b-4093-b115-3b7ebe26a0c2" />
 
-- BR1-PC1 / BR2-PC1 → 8.8.8.8 ping → (결과)
+- BR1-PC1 / BR2-PC1 → 8.8.8.8 ping
 
   <img width="687" height="288" alt="image" src="https://github.com/user-attachments/assets/bad8491b-7108-46f1-8663-95a7d18c522c" />
 
