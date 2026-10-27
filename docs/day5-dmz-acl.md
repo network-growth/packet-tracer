@@ -46,12 +46,36 @@
 
 ## 검증 결과
 - HQ-FW `show interface ip brief` / `show nameif` → (inside 100, dmz 50)
+
+  <img width="720" height="224" alt="image" src="https://github.com/user-attachments/assets/cf907900-9a13-49e0-b627-e55edecf7b28" />
+
+  <img width="720" height="128" alt="image" src="https://github.com/user-attachments/assets/7db771d0-405e-472d-abe2-a0be23d1068c" />
+
 - HQ-EDGE1 `show ip route` → (O E2 203.0.113.192/27)
+
+  <img width="771" height="833" alt="image" src="https://github.com/user-attachments/assets/0755e121-7a2e-4dee-8de6-cf34af3222da" />
+
 - REMOTE-PC 브라우저 `http://www.corp.com` → (DMZ-WEB 페이지)
+
+  Web - requst fail
+  
 - REMOTE-PC `ping 203.0.113.200` → (실패 = 정상)
+
+  <img width="841" height="753" alt="image" src="https://github.com/user-attachments/assets/07f30dcb-4c6d-45d2-834f-2a96ba74d0e3" />
+
 - PC-HR1 브라우저 `http://www.corp.local` → (DMZ-WEB 페이지)
+
+  Web - requst fail
+  
 - PC-HR1 → PC-FIN1 ping → (실패 = 정상), PC-HR1 → 10.3.10.10 → (성공)
+
+  PC-HR1 -> PC-FIN1 수정 ( 통신 성공 )
+
+  <img width="769" height="197" alt="image" src="https://github.com/user-attachments/assets/97732dde-01fc-4477-b0c0-90dd5deb030d" />
+
 - DIST-A1 `show access-lists` → (110, 120 매칭 수)
+
+  <img width="839" height="753" alt="image" src="https://github.com/user-attachments/assets/92e65f39-bf10-44bb-b66a-78b96a7146f2" />
 
 ## 남은 이슈 / 다음에 할 것
 - ASA 단일 장비 → 장애 시 DMZ 서비스 중단 (확장 과제: Active/Standby)
